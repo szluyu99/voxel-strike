@@ -1,0 +1,51 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #000; color: #eee;
+  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; user-select: none; }
+canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+#view { image-rendering: pixelated; image-rendering: crisp-edges; }
+#hud { pointer-events: none; }
+
+.screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15), rgba(0,0,0,0.6)); z-index: 10; }
+.hidden { display: none !important; }
+.panel { background: rgba(12, 18, 24, 0.82); border: 1px solid rgba(160, 220, 160, 0.35);
+  border-radius: 10px; padding: 26px 30px; width: min(440px, 92vw); max-height: 92vh; overflow: auto;
+  backdrop-filter: blur(4px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); text-align: center; }
+h1 { margin: 0; font-size: 34px; letter-spacing: 6px; color: #b6f5a8; text-shadow: 0 0 18px rgba(120,255,120,0.35); }
+h2 { margin: 0 0 16px; font-size: 26px; }
+.sub { margin: 6px 0 20px; color: #9ab; font-size: 13px; }
+.row { display: flex; align-items: center; gap: 10px; margin: 10px 0; text-align: left; }
+.row label { width: 96px; color: #bcd; font-size: 14px; }
+.row select, .row input[type=range] { flex: 1; }
+select { background: #1c2630; color: #eee; border: 1px solid #3a4a58; border-radius: 5px; padding: 6px; font-size: 14px; }
+button { font: inherit; cursor: pointer; border-radius: 6px; border: 1px solid #4a5a68; background: #223040;
+  color: #eee; padding: 9px 18px; margin: 6px; }
+button:hover { background: #2c3e52; }
+button.primary { background: #3e8e3a; border-color: #6c6; font-size: 17px; padding: 11px 34px; margin-top: 16px; }
+button.primary:hover { background: #4aa645; }
+button.small { padding: 5px 9px; margin: 0; }
+.hs { color: #bbb; font-size: 13px; }
+.error { color: #ff7070; font-size: 13px; min-height: 1em; }
+details { text-align: left; margin-top: 8px; font-size: 13px; color: #ccd; }
+summary { cursor: pointer; color: #9cf; }
+.keys { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.keys td { padding: 3px 4px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.keys td:first-child { color: #ffd070; white-space: nowrap; width: 40%; }
+.tip { color: #9ab; }
+#goStats { line-height: 1.8; }
+#goStats b { font-size: 22px; color: #ffd070; }
+.new { color: #7f7; font-weight: 700; }
+#loading { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); z-index: 20;
+  background: rgba(0,0,0,0.7); padding: 8px 18px; border-radius: 6px; font-size: 14px; }
+
+/* touch controls (shown on coarse pointers while playing) */
+#touch { display: none; }
+body.touch #touch { display: block; }
+.stick { position: fixed; bottom: 30px; width: 130px; height: 130px; border-radius: 50%; z-index: 5;
+  background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.25); touch-action: none; }
+#stickL { left: 30px; } #stickR { right: 200px; }
+.knob { position: absolute; left: 35px; top: 35px; width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); pointer-events: none; }
+.btns { position: fixed; right: 16px; bottom: 30px; display: flex; flex-direction: column; z-index: 5; }
+.btns button { width: 72px; height: 54px; margin: 5px 0; background: rgba(60,60,60,0.5); touch-action: none; }
+.btns [data-btn=fire] { background: rgba(160,50,40,0.6); height: 72px; }
